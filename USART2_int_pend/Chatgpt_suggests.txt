@@ -1,0 +1,37 @@
+Dynamic Selection of ISER and ISPR
+Each ISER and ISPR register controls 32 IRQs. So, instead of hardcoding specific addresses, we compute the required register index.
+
+Improved code :
+
+#include <stdio.h>
+#include <stdint.h>
+
+#define NVIC_ISER_BASE   (0xE000E100)
+#define NVIC_ISPR_BASE   (0xE000E200)
+#define USART3_IRQNO     39
+
+void enable_irq(uint8_t irq_no)
+{
+    uint32_t *pISER = (uint32_t *)(NVIC_ISER_BASE + (irq_no / 32) * 4);
+    *pISER |= (1 << (irq_no % 32));
+}
+
+void trigger_irq(uint8_t irq_no)
+{
+    uint32_t *pISPR = (uint32_t *)(NVIC_ISPR_BASE + (irq_no / 32) * 4);
+    *pISPR |= (1 << (irq_no % 32));
+}
+
+int main(void)
+{
+    trigger_irq(USART3_IRQNO);  // Pend the interrupt for USART3
+    enable_irq(USART3_IRQNO);   // Enable the IRQ for USART3
+
+    while (1);
+}
+
+// ISR
+void USART3_IRQHandler(void)
+{
+    printf("In USART3 ISR\n");
+}

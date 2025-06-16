@@ -1,0 +1,20 @@
+23:28:25 **** Incremental Build of configuration Debug for project Stack ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+../Src/main.c:19:4: warning: #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use." [-Wcpp]
+   19 |   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
+      |    ^~~~~~~
+arm-none-eabi-gcc -o "Stack.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Autocad\ARM_Cortex-M\Stack\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stack.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stack.elf
+ 
+arm-none-eabi-size  Stack.elf 
+arm-none-eabi-objdump -h -S Stack.elf  > "Stack.list"
+   text	   data	    bss	    dec	    hex	filename
+   5164	     92	   1900	   7156	   1bf4	Stack.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stack.list
+ 
+
+23:28:28 Build Finished. 0 errors, 1 warnings. (took 3s.245ms)
+

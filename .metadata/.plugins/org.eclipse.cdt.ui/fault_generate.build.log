@@ -1,0 +1,10 @@
+22:36:48 **** Build of configuration Debug for project fault_generate ****
+make -j12 all 
+arm-none-eabi-size  fault_generate.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5740	     92	   1900	   7732	   1e34	fault_generate.elf
+Finished building: default.size.stdout
+ 
+
+22:36:49 Build Finished. 0 errors, 0 warnings. (took 323ms)
+

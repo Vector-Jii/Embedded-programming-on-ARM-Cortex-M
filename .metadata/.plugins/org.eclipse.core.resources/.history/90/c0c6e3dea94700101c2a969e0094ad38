@@ -1,0 +1,71 @@
+/**
+Exercise question :-
+Write a program to enable all configurable faults exception ,implement the fault exception handler and
+cause the fault by following method
+1. Execute an undefined instruction
+2. Divide by zero
+3. Try execute instruction from peripheral region
+4. Execute SVC inside a SVC handler
+5. Executing SVC instruction inside the interrupt handler whose priority is same as or lesser
+   SVC handler
+ */
+
+#include <stdint.h>
+
+#if !defined(__SOFT_FP__) && defined(__ARM_FP)
+  #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
+#endif
+
+#include<stdio.h>
+#include<stdint-gcc.h>
+
+int main(void)
+{
+	//1. Enable all the configurable exception like usage,bus and mem manage fault
+
+	uint32_t *pSHCSR = (uint32_t*)0xE000ED24;    // pointer to the SHCSR
+	*pSHCSR |= (1<< 16); // mem manage
+	*pSHCSR |= (1<< 17); // bus
+	*pSHCSR |= (1<< 18); // usage
+
+	//3. Force the processor to execute some undefined instruction   [Raising usage fault]
+
+	uint32_t *pSRAM = (uint32_t*)0x20010000;
+	*pSRAM = 0xFFFFFFFF;
+
+	void (*some_address) (void);
+
+	//some_address = (void*)pSRAM;
+	some_address = (void*)0x20010001;
+
+	some_address();
+
+	//4. Analyze the fault
+    /* Loop forever */
+	for(;;);
+}
+
+//2. Implement the fault handlers
+
+void HardFault_Handler(void)
+{
+	printf("Inside hard fault handler ");
+	while(1);
+}
+void MemManage_Handler(void)
+{
+	printf("memory manage fault handler");
+	while(1);
+}
+void BusFault_Handler(void)
+{
+	printf("Inside bus fault handler");
+	while(1);
+}
+void UsageFault_Handler(void)
+{
+	printf("Inside usage fault");
+	while(1);
+}
+
+

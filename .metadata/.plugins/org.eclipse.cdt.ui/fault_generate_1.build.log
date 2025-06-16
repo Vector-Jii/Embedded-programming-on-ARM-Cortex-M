@@ -1,0 +1,17 @@
+21:15:12 **** Build of configuration Debug for project fault_generate_1 ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc -o "fault_generate_1.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Autocad\ARM_Cortex-M\fault_generate_1\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="fault_generate_1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: fault_generate_1.elf
+ 
+arm-none-eabi-size  fault_generate_1.elf 
+arm-none-eabi-objdump -h -S fault_generate_1.elf  > "fault_generate_1.list"
+   text	   data	    bss	    dec	    hex	filename
+   5368	     92	   1900	   7360	   1cc0	fault_generate_1.elf
+Finished building: default.size.stdout
+ 
+Finished building: fault_generate_1.list
+ 
+
+21:15:13 Build Finished. 0 errors, 0 warnings. (took 1s.131ms)
+

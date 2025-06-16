@@ -1,0 +1,60 @@
+22:47:51 **** Incremental Build of configuration Debug for project SVC_number ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
+../Src/main.c:6:4: warning: #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use." [-Wcpp]
+    6 |   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
+      |    ^~~~~~~
+arm-none-eabi-gcc -o "SVC_number.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Autocad\ARM_Cortex-M\SVC_number\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SVC_number.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SVC_number.elf
+ 
+arm-none-eabi-size  SVC_number.elf 
+arm-none-eabi-objdump -h -S SVC_number.elf  > "SVC_number.list"
+   text	   data	    bss	    dec	    hex	filename
+   4908	     92	   1900	   6900	   1af4	SVC_number.elf
+Finished building: default.size.stdout
+ 
+Finished building: SVC_number.list
+ 
+22:48:02 **** Incremental Build of configuration Debug for project SVC_number ****
+make -j12 all 
+arm-none-eabi-size  SVC_number.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4908	     92	   1900	   6900	   1af4	SVC_number.elf
+Finished building: default.size.stdout
+ 
+22:50:42 **** Incremental Build of configuration Debug for project SVC_number ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+../Src/main.c:5:4: warning: #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use." [-Wcpp]
+    5 |   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
+      |    ^~~~~~~
+arm-none-eabi-gcc -o "SVC_number.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Autocad\ARM_Cortex-M\SVC_number\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SVC_number.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SVC_number.elf
+ 
+arm-none-eabi-size  SVC_number.elf 
+arm-none-eabi-objdump -h -S SVC_number.elf  > "SVC_number.list"
+   text	   data	    bss	    dec	    hex	filename
+   3408	     92	   1900	   5400	   1518	SVC_number.elf
+Finished building: default.size.stdout
+ 
+Finished building: SVC_number.list
+ 
+22:52:19 **** Incremental Build of configuration Debug for project SVC_number ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g -DDEBUG -DSTM32 -DSTM32F407G_DISC1 -DSTM32F4 -DSTM32F407VGTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+../Src/main.c:5:4: warning: #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use." [-Wcpp]
+    5 |   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
+      |    ^~~~~~~
+arm-none-eabi-gcc -o "SVC_number.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Autocad\ARM_Cortex-M\SVC_number\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SVC_number.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SVC_number.elf
+ 
+arm-none-eabi-size  SVC_number.elf 
+arm-none-eabi-objdump -h -S SVC_number.elf  > "SVC_number.list"
+   text	   data	    bss	    dec	    hex	filename
+   5120	     92	   1900	   7112	   1bc8	SVC_number.elf
+Finished building: default.size.stdout
+ 
+Finished building: SVC_number.list
+ 

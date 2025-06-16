@@ -1,0 +1,69 @@
+ISSUES AND IMPROVREMENT
+
+1)Incorrect Priority Encoding:
+	Instead of priority_value << pos, you should use (priority_value & 0xF0) << (pos + 4).
+		Fix: *ipr &= ~(0xFF << pos);   
+		     *ipr |= ((priority_value & 0xF0) << (pos + 4));
+
+2)Interrupt Enabling Order:
+	You are setting the Pending Register (ISPR) before enabling the interrupt. This might not trigger the interrupt as expected.
+		Fix: Enable the IRQ (ISER) before setting the pending bit (ISPR).
+
+
+ ===========================================================================================================================================
+
+Revised code :
+
+#include <stdint.h>
+#include <stdio.h>
+
+#define IRQNO_TIMER2 28
+#define IRQNO_I2C1_EV 31
+
+// Pointer variable to hold NVIC base addresses
+uint32_t *pNVIC_IPRBase = (uint32_t*)0xE000E400;
+uint32_t *pNVIC_ISERBase = (uint32_t*)0xE000E100;
+uint32_t *pNVIC_ISPRBase = (uint32_t*)0XE000E200;
+
+void configure_priority_for_irqs(uint8_t irq_no, uint8_t priority_value)
+{
+    uint8_t iprx = irq_no / 4;  
+    uint32_t *ipr = pNVIC_IPRBase + iprx;
+    uint8_t pos = (irq_no % 4) * 8;
+    
+    // Set priority (Cortex-M uses upper 4 bits for priority)
+    *ipr &= ~(0xFF << pos);   
+    *ipr |= ((priority_value & 0xF0) << (pos + 4));  
+}
+
+int main(void)
+{
+    // 1) Configure interrupt priorities
+    configure_priority_for_irqs(IRQNO_TIMER2, 0x80);
+    configure_priority_for_irqs(IRQNO_I2C1_EV, 0x70);
+
+    // 2) Enable the IRQs
+    *pNVIC_ISERBase |= (1 << IRQNO_TIMER2);
+    *pNVIC_ISERBase |= (1 << IRQNO_I2C1_EV);
+
+    // 3) Set interrupt pending bits
+    *pNVIC_ISPRBase |= (1 << IRQNO_TIMER2);  // Trigger TIMER2 interrupt
+
+    while (1);
+}
+
+// ISR for TIM2
+void TIM2_IRQHandler(void)
+{
+    printf("TIM2_IRQHandler\n");
+    
+    // Trigger I2C1 event interrupt
+    *pNVIC_ISPRBase |= (1 << IRQNO_I2C1_EV);
+}
+
+// ISR for I2C1
+void I2C1_EV_IRQHandler(void)
+{
+    printf("I2C1_EV_IRQHandler\n");
+}
+
