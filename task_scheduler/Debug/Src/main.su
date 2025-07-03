@@ -1,0 +1,17 @@
+main.c:48:5:main	8	static
+main.c:73:6:task1_handler	8	static
+main.c:81:6:task2_handler	8	static
+main.c:89:6:task3_handler	8	static
+main.c:97:6:task4_handler	8	static
+main.c:106:28:init_scheduler_stack	0	static,ignoring_inline_asm
+main.c:112:6:init_systick_timer	32	static
+main.c:139:6:init_task_stack	24	static
+main.c:166:6:enable_proessor_fault	16	static
+main.c:176:28:switch_sp_to_psp	0	static,ignoring_inline_asm
+main.c:194:10:get_psp_value	4	static
+main.c:199:6:save_psp_value	16	static
+main.c:204:6:update_next_task	4	static
+main.c:210:28:SysTick_Handler	0	static,ignoring_inline_asm
+main.c:248:6:HardFault_Handler	8	static
+main.c:254:6:MemManage_Handler	8	static
+main.c:260:6:BusFault_Handler	8	static
